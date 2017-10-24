@@ -27,3 +27,17 @@ new Vue({
   template: '<App/>',
   components: {App}
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to.fullPath + ' => need aut1111h')
+  if (to.matched.some((x) => x.meta.requireAuth)) {
+    console.log(to.fullPath + ' => need auth')
+    if (firebase.auth().currentUser) {
+      next()
+      return
+    }
+    next({path: '/signin', query: {redirect: to.fullPath}})
+    return
+  }
+  next()
+})

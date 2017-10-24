@@ -26,6 +26,9 @@ export default new Router({
       path: '/signIn',
       name: 'SignIn',
       component: SignIn
+    }, {
+      path: '*',
+      redirect: {name: 'SignIn'}
     }
   ],
   mode: 'history'

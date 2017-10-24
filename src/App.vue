@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-    <router-link to="/">Home</router-link>
-    <router-link to="/profile">Profile</router-link>
-    <router-link to="/user/1">User</router-link>
-    <router-link to="/signIn">SignIn</router-link>
-    <router-view></router-view>
+    <NavBarMenu/>
+    <div class="ui container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+  import NavBarMenu from './components/NavBarMenu'
+
   export default {
+    components: {
+      NavBarMenu
+    },
     name: 'app'
   }
 </script>
@@ -21,6 +25,5 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 </style>
