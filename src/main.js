@@ -6,6 +6,8 @@ import router from './router/routes'
 import firebase from 'firebase'
 import '../node_modules/semantic-ui-css/semantic.min.css'
 
+Vue.config.productionTip = false
+
 // Initialize Firebase
 firebase.initializeApp(
   {
@@ -18,7 +20,20 @@ firebase.initializeApp(
   }
 )
 
-Vue.config.productionTip = false
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((x) => x.meta.requireAuth)) {
+    const cancel = firebase.auth().onAuthStateChanged((user) => {
+      cancel()
+      if (user) {
+        next()
+        return
+      }
+      next({path: '/signin', query: {redirect: to.fullPath}})
+    })
+    return
+  }
+  next()
+})
 
 /* eslint-disable no-new */
 new Vue({
@@ -26,18 +41,4 @@ new Vue({
   router,
   template: '<App/>',
   components: {App}
-})
-
-router.beforeEach((to, from, next) => {
-  console.log(to.fullPath + ' => need aut1111h')
-  if (to.matched.some((x) => x.meta.requireAuth)) {
-    console.log(to.fullPath + ' => need auth')
-    if (firebase.auth().currentUser) {
-      next()
-      return
-    }
-    next({path: '/signin', query: {redirect: to.fullPath}})
-    return
-  }
-  next()
 })

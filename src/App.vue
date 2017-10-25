@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import NavBarMenu from './components/NavBarMenu'
+  import NavBarMenu from './components/TopBarMenu'
 
   export default {
     components: {
