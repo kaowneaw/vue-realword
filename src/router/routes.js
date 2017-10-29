@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Profie from '@/components/Profile'
 import User from '@/components/User'
 import SignIn from '@/components/SignIn'
+import ProfileEdit from '@/components/ProfileEdit'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profie,
+      meta: {requireAuth: true}
+    }, {
+      path: '/profile/edit',
+      name: 'ProfileEdit',
+      component: ProfileEdit,
       meta: {requireAuth: true}
     }, {
       path: '/user/:id',
