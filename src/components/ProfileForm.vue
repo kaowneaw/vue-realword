@@ -9,7 +9,7 @@
       <input v-model="description"/>
     </div>
     <button class="ui submit blue button">Save</button>
-    <button class="ui red button" @click="$emit('cancel')">Cancel</button>
+    <div class="ui red button" @click="$emit('cancel')">Cancel</div>
   </form>
 
 </template>

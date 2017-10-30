@@ -5,6 +5,7 @@ import App from './App'
 import router from './router/routes'
 import firebase from 'firebase'
 import '../node_modules/semantic-ui-css/semantic.min.css'
+import { Auth } from './services'
 
 Vue.config.productionTip = false
 
@@ -22,8 +23,7 @@ firebase.initializeApp(
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((x) => x.meta.requireAuth)) {
-    const cancel = firebase.auth().onAuthStateChanged((user) => {
-      cancel()
+    Auth.requireUser((user) => {
       if (user) {
         next()
         return
