@@ -5,7 +5,9 @@ import App from './App'
 import router from './router/routes'
 import firebase from 'firebase'
 import '../node_modules/semantic-ui-css/semantic.min.css'
+import '../node_modules/semantic-ui-css/semantic.min.js'
 import { Auth } from './services'
+import moment from 'moment'
 
 Vue.config.productionTip = false
 
@@ -33,6 +35,22 @@ router.beforeEach((to, from, next) => {
     return
   }
   next()
+})
+
+const ticker = new Vue({
+  data: () => ({
+    tick: 0
+  }),
+  created () {
+    setInterval(() => {
+      this.tick = Date.now()
+    }, 10000)
+  }
+})
+
+Vue.filter('fromNow', (value) => {
+  /* eslint-disable */ ticker.tick  //ticker filter date every 10 sec
+  return moment(value).fromNow()
 })
 
 /* eslint-disable no-new */

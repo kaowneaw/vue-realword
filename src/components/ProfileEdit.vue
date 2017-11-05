@@ -2,7 +2,6 @@
   <div class="ui segment">
     <h3 class="ui header">Edit Profile</h3>
     <profile-form v-model="profile" @save="save" @cancel="back"></profile-form>
-    {{profile}}
   </div>
 </template>
 <script>
@@ -16,7 +15,8 @@
     data: () => ({
       profile: {
         name: '',
-        description: ''
+        description: '',
+        photo: ''
       }
     }),
     created () {

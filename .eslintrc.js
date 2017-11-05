@@ -8,6 +8,8 @@ module.exports = {
   },
   env: {
     browser: true,
+    jquery: true,
+    node: true
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'standard',
@@ -23,5 +25,9 @@ module.exports = {
     'generator-star-spacing': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+  },
+  globals: {
+    $: true,
+    jQuery: true
   }
 }

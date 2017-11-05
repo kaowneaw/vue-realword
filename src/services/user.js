@@ -6,6 +6,18 @@ const get = (id, callback) => {
   })
 }
 
+const list = (callback) => {
+  firebase.database().ref(`user`).on('value', (snapshots) => {
+    const result = []
+    snapshots.forEach((snapshot) => {
+      const user = snapshot.val()
+      user.$id = snapshot.key
+      result.push(user)
+    })
+    callback(result)
+  })
+}
+
 const set = (id, data) => {
   return firebase.database().ref(`user/${id}`).set(data)
 }
@@ -19,5 +31,6 @@ const subscribe = (id, callback) => {
 export default {
   get,
   set,
-  subscribe
+  subscribe,
+  list
 }

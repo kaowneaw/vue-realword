@@ -3,7 +3,7 @@
     <br>
     <div class="ui card">
       <div class="image">
-        <img src="https://www.petdrugsonline.co.uk/images/page-headers/cats-master-header">
+        <img v-if="profile.photo" :src="profile.photo">
       </div>
       <div class="content">
         <a class="header">{{profile.name}}</a>
