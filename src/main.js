@@ -8,6 +8,7 @@ import '../node_modules/semantic-ui-css/semantic.min.css'
 import '../node_modules/semantic-ui-css/semantic.min.js'
 import { Auth } from './services'
 import moment from 'moment'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -57,6 +58,7 @@ Vue.filter('fromNow', (value) => {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: {App}
 })

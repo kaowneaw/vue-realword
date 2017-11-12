@@ -32,17 +32,11 @@
       photo: ''
     }),
     created () {
-      this.name = this.value.name
-      this.description = this.value.description
-      this.photo = this.value.photo
-      console.log(this.value)
+      this.init()
     },
     watch: {
       value () {
-        this.name = this.value.name
-        this.description = this.value.description
-        this.photo = this.value.photo
-        console.log(this.value)
+        this.init()
       }
     },
     methods: {
@@ -59,6 +53,12 @@
       },
       uploaded (url) {
         this.photo = url
+      },
+      init () {
+        this.name = this.value.name
+        this.description = this.value.description
+        this.photo = this.value.photo
+        console.log(this.value)
       }
     }
   }
